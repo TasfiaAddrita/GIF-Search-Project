@@ -8,29 +8,29 @@ app = Flask(__name__)
 def index():
     """Return homepage."""
     # TODO: Extract query term from url
-r = requests.get("https://api.tenor.com/v1/search?q=%s&key=%s&limit=%s" % (search_term, apikey, lmt)))
+    tenor_url = "https://api.tenor.com/v1/search?q=%s&key=%s&limit=%s"
 
     # TODO: Make 'params' dict with query term and API key
-params ={
-apikey = 'STTZ6FZ9PGKF'
+    params = {
+        "apikey": 'STTZ6FZ9PGKF',
+        "search_term": 'cats',
+        "lmt": 1,
+        "media": "minimal"
+    }
 
-
-}
     # TODO: Make an API call to Tenor using the 'requests' library
-    # set the apikey and limit
-apikey = 'STTZ6FZ9PGKF'
-lmt = 10
-
-
-
-# continue a similar pattern until the user makes a selection or starts a new search.
-
+    r = requests.get("https://api.tenor.com/v1/search?", params=params)
 
     # TODO: Get the first 10 results from the search results
+    if r.status_code == 200:
+        # load the GIFs using the urls for the smaller GIF sizes
+        gif = json.loads(r.content)
+        gif = gif['results'][0]
+    else:
+        gif = None
 
     # TODO: Render the 'index.html' template, passing the gifs as a named parameter
-
-    return render_template("index.html")
+    return render_template("index.html", gif=gif)
 
 
 if __name__ == '__main__':
