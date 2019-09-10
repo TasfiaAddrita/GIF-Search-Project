@@ -13,7 +13,7 @@ def index():
     # TODO: Make 'params' dict with query term and API key
     params = {
         "apikey": 'STTZ6FZ9PGKF',
-        "search_term": 'cats',
+        "q": 'cats',
         "lmt": 1,
         "media": "minimal"
     }
