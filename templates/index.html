@@ -4,11 +4,13 @@
 
 {% block body %}
 
-<h1> {{ message }}
 <!-- TODO: Make an HTML form containing a search box and a submit button to add
     the search term to the query string -->
-
+    <form action="index.html">
+        <input type="text" placeholder="Search GIF...">
+    </form>
 <!-- TODO: Make a for loop to loop over GIFs passed in from the server -->
 
 <!-- TODO: For each gif, include the 'gif.html' template to display it -->
+
 {% endblock %}

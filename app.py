@@ -17,7 +17,7 @@ def index():
 
     # TODO: Render the 'index.html' template, passing the gifs as a named parameter
 
-    return render_template("index.html", message="Hello world!")
+    return render_template("index.html")
 
 
 if __name__ == '__main__':
