@@ -32,6 +32,5 @@ def index():
     # TODO: Render the 'index.html' template, passing the gifs as a named parameter
     return render_template("index.html", gif=gif)
 
-
 if __name__ == '__main__':
     app.run(debug=True)
