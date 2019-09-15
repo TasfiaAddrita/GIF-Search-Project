@@ -7,9 +7,7 @@ app = Flask(__name__)
 @app.route('/')
 def index():
     """Return homepage."""
-    # TODO: Extract query term from url
-    # tenor_url = "https://api.tenor.com/v1/search?q=%s&key=%s&limit=%s"
-    # submit = request.args.get('search')
+
     # TODO: Make 'params' dict with query term and API key
     params = {
         "apikey": 'STTZ6FZ9PGKF',
