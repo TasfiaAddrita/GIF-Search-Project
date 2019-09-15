@@ -10,15 +10,12 @@
         <input type="text" name="search" placeholder="Search GIF..."/>
         <button type="submit">Submit</button>
     </form>
-    <h1>{{ name }}</h1>
+    <h1>{{ search }}</h1>
 
-<!-- TODO: Make a for loop to loop over GIFs passed in from the server -->
-    <!-- <img src='{{ gif }}'> -->
+    <!-- TODO: Make a for loop to loop over GIFs passed in from the server -->
     {% for gif in gifs %}
+        <!-- TODO: For each gif, include the 'gif.html' template to display it -->
         {% include "gif.html" %}
-    {% endfor %}    
-
-<!-- TODO: For each gif, include the 'gif.html' template to display it -->
-    <!-- {% include "gif.html" %} -->
+    {% endfor %}
 
 {% endblock %}
