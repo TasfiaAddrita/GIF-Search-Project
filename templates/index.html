@@ -14,8 +14,11 @@
 
 <!-- TODO: Make a for loop to loop over GIFs passed in from the server -->
     <!-- <img src='{{ gif }}'> -->
+    {% for gif in gifs %}
+        {% include "gif.html" %}
+    {% endfor %}    
 
 <!-- TODO: For each gif, include the 'gif.html' template to display it -->
-    {% include "gif.html" %}
+    <!-- {% include "gif.html" %} -->
 
 {% endblock %}

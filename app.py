@@ -4,7 +4,7 @@ import json
 
 app = Flask(__name__)
 
-@app.route('/a')
+@app.route('/')
 def index():
     """Return homepage."""
     # TODO: Extract query term from url
@@ -38,7 +38,7 @@ def get_gifs():
     params = {
         "apikey": 'STTZ6FZ9PGKF',
         "q": submit,
-        "lmt": 1,
+        "lmt": 10,
         "media": "minimal"
     }
     r = requests.get("https://api.tenor.com/v1/search?", params=params)
