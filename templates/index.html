@@ -6,16 +6,25 @@
 
 <!-- TODO: Make an HTML form containing a search box and a submit button to add
     the search term to the query string -->
-    <form action="/submit">
-        <input type="text" name="search" placeholder="Search GIF..."/>
-        <button type="submit">Submit</button>
-    </form>
-    <h1>{{ search }}</h1>
+    <div class="container">
+        <nav>
+            <div class="container navbar-contents">
+                <h1>tenor</h1>
+                <form action="/submit">
+                    <input type="text" name="search" placeholder="Search GIF..."/>
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+        </nav>
+        <!-- # <h1>{{ search }}</h1> -->
 
-    <!-- TODO: Make a for loop to loop over GIFs passed in from the server -->
-    {% for gif in gifs %}
-        <!-- TODO: For each gif, include the 'gif.html' template to display it -->
-        {% include "gif.html" %}
-    {% endfor %}
+        <!-- TODO: Make a for loop to loop over GIFs passed in from the server -->
+        <div class="img-container">
+            {% for gif in gifs %}
+                <!-- TODO: For each gif, include the 'gif.html' template to display it -->
+                {% include "gif.html" %}
+            {% endfor %}
+        </div>
+    </div>
 
 {% endblock %}
