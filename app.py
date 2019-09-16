@@ -11,7 +11,7 @@ def index():
     # TODO: Make 'params' dict with query term and API key
     params = {
         "apikey": 'STTZ6FZ9PGKF',
-        "limit": 1,
+        "limit": 10,
         "media_filter": "minimal"
     }
 

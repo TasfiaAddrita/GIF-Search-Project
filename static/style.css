@@ -17,28 +17,30 @@ nav {
 }
 
 .container {
-    /* width: 100%; */
     box-sizing: border-box;
     margin: 0px 70px 30px 70px;
     padding: 0px 15px 0px 15px;
-    /* width: inherit; */
 }
 
 .navbar-contents {
-    display: inline-block;
+    box-sizing: border-box;
+}
+
+.search-wrapper {
+    width: 100%;
     position: relative;
-    padding-left: 0px;
-}
-
-.navbar-contents h1 {
-    /* padding: 0px; */
     display: inline;
 }
 
-.navbar-contents form {
-    display: inline;
+.search-wrapper input {
+    width: 90%;
 }
 
-.img-container {
-    padding-top: 20px;
+.img-format {
+    padding: 5px 0px;
+}
+
+.rounded {
+    border-radius: 5px;
+    box-shadow: 0 4px 10px 0 rgba(0,0,0,.05), 0 2px 4px 0 rgba(0,0,0,.08);
 }
