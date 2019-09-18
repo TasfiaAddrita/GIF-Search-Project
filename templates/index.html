@@ -5,43 +5,45 @@
 {% block body %}
 
 <!-- TODO: Make an HTML form containing a search box and a submit button to add the search term to the query string -->
-    <div class="container">
-        <!-- <nav>
-            <div class="container navbar-contents">
-                <div class="search-wrapper">
-                    <form action="/submit">
-                        <input type="text" name="search" placeholder="Search GIF..."/>
-                        <button type="submit">Submit</button>
-                    </form>
-                </div>
-            </div>
-        </nav> -->
+    <nav class="navbar navbar-expand-lg navbar-dark lighten-2 mb-4 sticky-top">
+        <!-- Navbar brand -->
+        <a class="navbar-brand" href="/">tenor</a>
+        <!-- Collapsible content -->
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <form action="/submit" class="form-inline mr-auto">
+                <input class="form-control" name="search" type="text" placeholder="Search" aria-label="Search">
+                <button class="btn btn-mdb-color btn-rounded btn-sm my-0 ml-sm-2" type="submit">Search</button>
+            </form>
+        </div>
+        <!-- Collapsible content -->
+    </nav>
 
-        <nav class="navbar navbar-expand-lg navbar-dark blue lighten-2 mb-4">
-
-            <!-- Collapsible content -->
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
-                <form action="/submit" class="form-inline mr-auto">
-                    <input class="form-control" name="search" type="text" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-mdb-color btn-rounded btn-sm my-0 ml-sm-2" type="submit">Search</button>
-                </form>
-
-            </div>
-            <!-- Collapsible content -->
-
-            <!-- Navbar brand -->
-            <a class="navbar-brand" href="#">Navbar</a>
-
-        </nav>
+    <div class="my-container">
+        <div class="btn-group">
+            <form action="/">
+                <button class="btn btn-rounded" id="random-button" type="submit">random</button>
+            </form>
+            <form action="/trending">
+                <button class="btn btn-rounded" id="trending-button" type="submit">trending</button>
+            </form>
+        </div>
 
         <!-- TODO: Make a for loop to loop over GIFs passed in from the server -->
         <!-- TODO: For each gif, include the 'gif.html' template to display it -->
-        <div class="grid img-container" data-masonry='{ "itemSelector": ".grid-item", "columnWidth": 25 }'>
-            {% for gif in gifs %}
-                {% include "gif.html" %}
-            {% endfor %}
-        </div>
+        {% if api_connection %}
+            {% if no_results %}
+                <h1>Sorry, looks like there's no gifs for {{ search }}. Try another search!</h1>
+            {% else %}
+            <div class="grid img-container" data-masonry='{ "itemSelector": ".grid-item", "columnWidth": 25 }'>
+                {% for gif in gifs %}
+                    {% include "gif.html" %}
+                {% endfor %}
+            {% endif %}
+            </div>
+        {% else %}
+            <h1> {{ api_connection }} </h1>
+            <h1>Looks like we're having trouble connecting to the Tenor API. Sorry about that.</h1>
+        {% endif %}
     </div>
 
 {% endblock %}

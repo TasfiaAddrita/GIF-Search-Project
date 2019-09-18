@@ -1,33 +1,39 @@
 from flask import Flask, render_template, request
 import requests
 import json
+from random import randint
 
 app = Flask(__name__)
 
 @app.route('/')
-def index():
-    """Return homepage."""
+# @app.route('/random')
+def get_random_gifs():
 
-    # TODO: Make 'params' dict with query term and API key
     params = {
         "apikey": 'STTZ6FZ9PGKF',
-        "limit": 10,
-        "media_filter": "minimal"
+        "limit": 10
     }
-
-    # TODO: Make an API call to Tenor using the 'requests' library
-    r = requests.get("https://api.tenor.com/v1/trending?", params=params)
-
-    # TODO: Get the first 10 results from the search results
-    if r.status_code == 200:
-        # load the GIFs using the urls for the smaller GIF sizes
-        gif = json.loads(r.content)
-        gif = gif['results']
+    r_categories = requests.get("https://api.tenor.com/v1/categories?", params=params)
+    if r_categories.status_code == 200:
+        categories = json.loads(r_categories.content)
+        categories = categories['tags']
+        random_category = categories[randint(0, len(categories))]["searchterm"]
+        print(random_category)
+        params['q'] = random_category
     else:
-        gif = None
+        categories = None
 
-    # TODO: Render the 'index.html' template, passing the gifs as a named parameter
-    return render_template("index.html", gifs=gif)
+    r_gifs = requests.get("https://api.tenor.com/v1/random?", params=params)
+    if r_gifs.status_code == 200:
+        # load the GIFs using the urls for the smaller GIF sizes
+        api_connection = True
+        gif = json.loads(r_gifs.content)
+        gif = gif['results']
+        no_results = True if len(gif) == 0 else False
+    else:
+        api_connection = False
+    return render_template("index.html", gifs=gif, no_results=no_results, api_connection=api_connection)
+
 
 @app.route('/submit')
 def get_gifs():
@@ -41,12 +47,30 @@ def get_gifs():
     r = requests.get("https://api.tenor.com/v1/search?", params=params)
     if r.status_code == 200:
         # load the GIFs using the urls for the smaller GIF sizes
+        api_connection = True
         gif = json.loads(r.content)
         gif = gif['results']
+        no_results = True if len(gif) == 0 else False
     else:
-        gif = None
+        api_connection = False
+    return render_template("index.html", search=submit, gifs=gif, no_results=no_results, api_connection=api_connection)
 
-    return render_template("index.html", search=submit, gifs=gif)
+@app.route('/trending')
+def get_trending_gifs():
+    params = {
+        "apikey": 'STTZ6FZ9PGKF',
+        "media_filter": "minimal"
+    }
+    r = requests.get("https://api.tenor.com/v1/trending?", params=params)
+    if r.status_code == 200:
+        # load the GIFs using the urls for the smaller GIF sizes
+        api_connection = True
+        gif = json.loads(r.content)
+        gif = gif['results']
+        no_results = True if len(gif) == 0 else False
+    else:
+        api_connection = False
+    return render_template("index.html", gifs=gif, no_results=no_results, api_connection=api_connection)
 
 if __name__ == '__main__':
     app.run(debug=True)
