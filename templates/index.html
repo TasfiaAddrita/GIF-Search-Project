@@ -10,8 +10,8 @@
         <a class="navbar-brand" href="/">tenor</a>
         <!-- Collapsible content -->
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <form action="/submit" class="form-inline mr-auto">
-                <input class="form-control" name="search" type="text" placeholder="Search" aria-label="Search">
+            <form action='/submit' class="form-inline mr-auto">
+                <input class="form-control" name="search" id="process-input" type="text" placeholder="Search" aria-label="Search">
                 <button class="btn btn-mdb-color btn-rounded btn-sm my-0 ml-sm-2" type="submit">Search</button>
             </form>
         </div>
@@ -21,10 +21,10 @@
     <div class="my-container">
         <div class="btn-group">
             <form action="/">
-                <button class="btn btn-rounded" id="random-button" type="submit">random</button>
+                <button name="random" class="btn btn-rounded" id="random-button" type="submit">random</button>
             </form>
             <form action="/trending">
-                <button class="btn btn-rounded" id="trending-button" type="submit">trending</button>
+                <button name="trending" class="btn btn-rounded" id="trending-button" type="submit">trending</button>
             </form>
         </div>
 
@@ -34,7 +34,7 @@
             {% if no_results %}
                 <h1>Sorry, looks like there's no gifs for {{ search }}. Try another search!</h1>
             {% else %}
-            <div class="grid img-container" data-masonry='{ "itemSelector": ".grid-item", "columnWidth": 25 }'>
+            <div id="img-grid" class="grid img-container" data-masonry='{ "itemSelector": ".grid-item", "columnWidth": 25 }'>
                 {% for gif in gifs %}
                     {% include "gif.html" %}
                 {% endfor %}
