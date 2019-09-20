@@ -1,4 +1,3 @@
-
 <!-- TODO: Extend 'base.html' and put content into a block 'body' to match -->
 {% extends 'base.html' %}
 
@@ -12,7 +11,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <form action='/submit' class="form-inline mr-auto">
                 <input class="form-control" name="search" id="process-input" type="text" placeholder="Search" aria-label="Search">
-                <!-- <button class="btn btn-mdb-color btn-rounded btn-sm my-0 ml-sm-2" type="submit">Search</button> -->
+
             </form>
         </div>
         <!-- Collapsible content -->
@@ -21,29 +20,26 @@
     <div class="my-container">
         <div class="btn-group">
             <form action="/">
-                <button name="random" class="btn btn-rounded" id="random-button" type="submit">random</button>
+                <button class="btn btn-rounded" id="random-button">random</button>
             </form>
             <form action="/trending">
-                <button name="trending" class="btn btn-rounded" id="trending-button" type="submit">trending</button>
+                <button class="btn btn-rounded" id="trending-button">trending</button>
             </form>
         </div>
 
-        <!-- TODO: Make a for loop to loop over GIFs passed in from the server -->
-        <!-- TODO: For each gif, include the 'gif.html' template to display it -->
+        <!-- did the request reach the tenor api? -->
         {% if api_connection %}
+            <!-- if yes, was a json file of gifs returned? -->
             {% if no_results %}
-                <h1>Sorry, looks like there's no gifs for {{ search }}. Try another search!</h1>
+                <h2>Sorry, looks like there's no gifs for {{ search }}. Try another search!</h2>
             {% else %}
-            <!-- <div id="img-grid" class="grid img-container" data-masonry='{ "itemSelector": ".grid-item", "columnWidth": 25 }'>
-                {% for gif in gifs %}
-                    {% include "gif.html" %}
-                {% endfor %}
+                <!-- layout the gifs via masonry.js -->
+                <div id="img-grid" class="grid img-container" data-masonry='{ "itemSelector": ".grid-item", "columnWidth": 25 }'>
+                    {% include 'gifs.html' %}
+                </div>
             {% endif %}
-            </div> -->
-                {% include "gifs.html" %}
         {% else %}
-            <h1> {{ api_connection }} </h1>
-            <h1>Looks like we're having trouble connecting to the Tenor API. Sorry about that.</h1>
+            <h2>Looks like we're having trouble connecting to the Tenor API. Sorry about that.</h2>
         {% endif %}
     </div>
 
