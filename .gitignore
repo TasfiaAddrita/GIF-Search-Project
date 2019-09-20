@@ -1,0 +1,4 @@
+./__pycache__/
+./templates/gif.html
+./DS_Store
+./app_test.py
