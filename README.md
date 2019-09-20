@@ -13,7 +13,7 @@ Built a GIF search page that uses basic routing to display content by integratin
 - [x] Users should be able to type a string into the search bar, press the search button, and be shown up to 10 GIFs related to the search query
 - [x] GIFs should be displayed on a fresh load of the page, i.e. before a query has even been typed.
 - [x] GIFs should only update once a user has pressed the “Search” button
-- [ ] If no GIFs could be found for the search term, display an error message saying that no GIFs could be found, and to try another search query
+- [x] If no GIFs could be found for the search term, display an error message saying that no GIFs could be found, and to try another search query
 - [x] The following elements should have some custom styling (i.e. CSS rules) added to them:
     - Page title
     - Search Bar
