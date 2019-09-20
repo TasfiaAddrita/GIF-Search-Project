@@ -12,7 +12,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <form action='/submit' class="form-inline mr-auto">
                 <input class="form-control" name="search" id="process-input" type="text" placeholder="Search" aria-label="Search">
-                <button class="btn btn-mdb-color btn-rounded btn-sm my-0 ml-sm-2" type="submit">Search</button>
+                <!-- <button class="btn btn-mdb-color btn-rounded btn-sm my-0 ml-sm-2" type="submit">Search</button> -->
             </form>
         </div>
         <!-- Collapsible content -->
@@ -34,12 +34,13 @@
             {% if no_results %}
                 <h1>Sorry, looks like there's no gifs for {{ search }}. Try another search!</h1>
             {% else %}
-            <div id="img-grid" class="grid img-container" data-masonry='{ "itemSelector": ".grid-item", "columnWidth": 25 }'>
+            <!-- <div id="img-grid" class="grid img-container" data-masonry='{ "itemSelector": ".grid-item", "columnWidth": 25 }'>
                 {% for gif in gifs %}
                     {% include "gif.html" %}
                 {% endfor %}
             {% endif %}
-            </div>
+            </div> -->
+                {% include "gifs.html" %}
         {% else %}
             <h1> {{ api_connection }} </h1>
             <h1>Looks like we're having trouble connecting to the Tenor API. Sorry about that.</h1>

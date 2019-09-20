@@ -84,11 +84,12 @@ def search():
     search = request.form['search']
     params = {
         "apikey": 'STTZ6FZ9PGKF',
-        "q": input,
+        "q": search,
         "limit": 10,
         "media_filter": "minimal"
     }
     r = requests.get("https://api.tenor.com/v1/search?", params=params)
+
     if r.status_code == 200:
         # load the GIFs using the urls for the smaller GIF sizes
         api_connection = True
@@ -97,13 +98,8 @@ def search():
         no_results = True if len(gif) == 0 else False
     else:
         api_connection = False
-    # return gif
-    return render_template("index.html", search=input, gifs=gif, no_results=no_results, api_connection=api_connection)
-    # return json.dumps({'search': search})
 
-# @app.route('/search', methods=['GET'])
-# def search_page():
-#     return render_template(search())
+    return render_template("gifs.html", gifs=gif)
 
 if __name__ == '__main__':
     app.run(debug=True)

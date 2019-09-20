@@ -1,0 +1,9 @@
+{% extends 'index.html' %}
+
+{% block body %}
+    <div id="img-grid" class="grid img-container" data-masonry='{ "itemSelector": ".grid-item", "columnWidth": 25 }'>
+        {% for gif in gifs %}
+            {% include "gif.html" %}
+        {% endfor %}
+    </div>
+{% endblock %}
