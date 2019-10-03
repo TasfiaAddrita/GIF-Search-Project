@@ -2,3 +2,4 @@
 ./templates/gif.html
 ./DS_Store
 ./app_test.py
+./env

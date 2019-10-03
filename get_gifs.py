@@ -2,13 +2,19 @@ from flask import request
 import requests
 from random import randint
 import json
+import os
+
+from dotenv import load_dotenv
+load_dotenv()
+
+TENOR_API_KEY = os.getenv("TENOR_API_KEY")
 
 # calls tenor api, endpoints dependent on what user does
 # input: tenor endpoint and user input
 # output: dictionary of gifs and necessary request values
 def get_gifs(endpoint, user_input):
     params = {
-        "apikey": 'STTZ6FZ9PGKF',
+        "apikey": TENOR_API_KEY,
         "limit": 10,
         "media_filter": "minimal"
     }

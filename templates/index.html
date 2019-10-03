@@ -34,7 +34,7 @@
                 <h2>Sorry, looks like there's no gifs for {{ search }}. Try another search!</h2>
             {% else %}
                 <!-- layout the gifs via masonry.js -->
-                <div id="img-grid" class="grid img-container" data-masonry='{ "itemSelector": ".grid-item", "columnWidth": 25 }'>
+                <div id="img-grid" class="grid">
                     {% include 'gifs.html' %}
                 </div>
             {% endif %}
