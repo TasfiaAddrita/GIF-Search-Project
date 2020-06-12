@@ -30,9 +30,15 @@ def search():
 @app.route('/submit')
 def get_derp_gifs():
     submit = request.args.get('search')
-    jinja_values = get_gifs("submit", search)
+    jinja_values = get_gifs("submit", submit)
 
-    return render_template("index.html", search=jinja_values['search'], gifs=jinja_values['gifs'], no_results=jinja_values['no_results'], api_connection=jinja_values['api_connection'])
+    return render_template(
+        "index.html", 
+        search=jinja_values['search'], 
+        gifs=jinja_values['gifs'], 
+        no_results=jinja_values['no_results'], 
+        api_connection=jinja_values['api_connection']
+    )
 
 if __name__ == '__main__':
     app.run(debug=True)
